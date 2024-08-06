@@ -1,5 +1,4 @@
 "use client"
-import { useTheme } from "@/contexts/ThemeContext"
 import { ReactNode } from "react"
 
 type Props = {
@@ -12,7 +11,7 @@ export const Container = ({ children }: Props) => {
     <div className={
       `w-full h-screen bg-gray-100 text-black dark:bg-black dark:text-white
     `}>
-      <div className="container mx-auto p-4 md:p-0">
+      <div className="container mx-auto p-4">
         {children}
       </div>
     </div>

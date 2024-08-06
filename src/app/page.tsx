@@ -1,25 +1,29 @@
 "use client"
 
-import { Button } from "@/components/button/Button";
+import { Chat } from "@/components/chat/Chat";
 import { Container } from "@/components/container/Container";
 import { ThemeSwitch } from "@/components/themeswitch/ThemeSwitch";
+import { ChatProvider } from "@/contexts/ChatContext";
 import { ThemeProvider } from "@/contexts/ThemeContext"
+import { UserProvider } from "@/contexts/UserContext";
 
 const Page = () => {
-  const handleClick = () => {
-    console.log('click')
-  }
   return (
     <ThemeProvider>
       <ThemeSwitch />
       <Container>
         <header>
-          <h1 className="text-4xl font-bold">Page Title</h1>
+          <h1 className="text-4xl font-bold my-6 text-center">Talk To Yourself</h1>
         </header>
         <section>
-          <p className="mt-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil beatae assumenda, nam optio maiores neque, aut perspiciatis esse incidunt laborum provident minima. Nihil facilis cum quibusdam aliquam similique quisquam at!</p>
+          <div className="mx-auto max-w-lg">
+            <UserProvider>
+              <ChatProvider>
+                <Chat />
+              </ChatProvider>
+            </UserProvider>
+          </div>
         </section>
-        <Button label="Theme" onClick={handleClick} />
       </Container>
     </ThemeProvider>
   )
