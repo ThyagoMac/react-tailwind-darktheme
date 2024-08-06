@@ -11,11 +11,15 @@ type ThemeContext = {
 export const ThemeContext = createContext<ThemeContext | null>(null);
 
 export const ThemeProvider = ({children}: {children: ReactNode}) => {
-  const [theme, setTheme] = useState(
-    localStorage.getItem(LOCALSTORAGEPATH) || 'light'
-  );
+  let localTheme = 'light';
+  /* if (typeof window !== 'undefined') { 
+    localTheme = localStorage.getItem(LOCALSTORAGEPATH) || 'light'
+   };
+  */
+  const [theme, setTheme] = useState(localTheme);
 
   useEffect(() => {
+    if (typeof window === 'undefined') { return; };
     document.documentElement.className = "";
     document.documentElement.classList.add(theme);
     localStorage.setItem(LOCALSTORAGEPATH, theme);
